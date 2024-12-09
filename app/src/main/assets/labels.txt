@@ -1,0 +1,9 @@
+NG raw beef
+NG raw pork
+NG undercooked beef
+NG undercooked pork
+OK cooked beef
+OK cooked pork
+OK undercooked beef
+overcooked beef
+overcooked pork
