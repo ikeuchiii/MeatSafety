@@ -1,5 +1,5 @@
-NG raw beef
-NG raw pork
+生牛肉
+生豚肉
 NG undercooked beef
 NG undercooked pork
 OK cooked beef
