@@ -39,14 +39,14 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
     private fun initPaints() {
         textBackgroundPaint.color = Color.BLACK
         textBackgroundPaint.style = Paint.Style.FILL
-        textBackgroundPaint.textSize = 50f
+        textBackgroundPaint.textSize = 60f
 
         textPaint.color = Color.WHITE
         textPaint.style = Paint.Style.FILL
         textPaint.textSize = 65f
 
         boxPaint.color = ContextCompat.getColor(context!!, R.color.bounding_box_color)
-        boxPaint.strokeWidth = 8F
+        boxPaint.strokeWidth = 10F
         boxPaint.style = Paint.Style.STROKE
     }
 
