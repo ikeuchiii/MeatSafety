@@ -80,8 +80,23 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
     }
 
     fun setResults(boundingBoxes: List<BoundingBox>) {
-        results = boundingBoxes
-        invalidate()
+        val updatedResults = boundingBoxes.mapIndexed { index, box ->
+            if (index < results.size) {
+                val currentBox = results[index]
+                if (Math.abs(box.cnf - currentBox.cnf) > 0.15) {
+                    box.copy(cnf = currentBox.cnf)
+                } else {
+                    currentBox
+                }
+            } else {
+                box
+            }
+        }
+
+        if (updatedResults != results) {
+            results = updatedResults
+            invalidate()
+        }
     }
 
     companion object {
