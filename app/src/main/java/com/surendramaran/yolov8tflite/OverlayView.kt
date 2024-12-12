@@ -1,19 +1,23 @@
 package com.surendramaran.yolov8tflite
 
+
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
-import android.graphics.RectF
+import android.os.Handler
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
-import java.util.LinkedList
-import kotlin.math.max
+import java.util.Timer
+import kotlin.concurrent.timer
+
 
 class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 
+    private val handler: Handler = Handler()
+    private val timer = Timer()
     private var results = listOf<BoundingBox>()
     private var boxPaint = Paint()
     private var textBackgroundPaint = Paint()
@@ -41,7 +45,7 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
 
         textPaint.color = Color.WHITE
         textPaint.style = Paint.Style.FILL
-        textPaint.textSize = 50f
+        textPaint.textSize = 65f
 
         boxPaint.color = ContextCompat.getColor(context!!, R.color.bounding_box_color)
         boxPaint.strokeWidth = 8F
@@ -56,6 +60,9 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
             val top = it.y1 * height
             val right = it.x2 * width
             val bottom = it.y2 * height
+            val interval = 10000L  // 1秒間隔
+
+
             canvas.drawRect(left, top, right, bottom, boxPaint)
             val s = String.format("%.1f", it.cnf * 100) + "%"
             val drawableText = "${it.clsName} ${s}"
@@ -70,7 +77,11 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
                 top + textHeight + BOUNDING_RECT_TEXT_PADDING,
                 textBackgroundPaint
             )
-            canvas.drawText(drawableText, left, top + bounds.height(), textPaint)
+
+            timer(period = interval) {
+                canvas.drawText(drawableText, left, top + bounds.height(), textPaint)
+            }
+
 
         }
     }
