@@ -68,45 +68,14 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
 
             val textWidth = bounds.width()
             val textHeight = bounds.height()
-
-
-            if(it.cnf >= 0.75){
-                textBackgroundPaint.getTextBounds(drawableText, 0, drawableText.length, bounds)
-                canvas.drawRect(
-                    left,
-                    top,
-                    left + textWidth + BOUNDING_RECT_TEXT_PADDING,
-                    top + textHeight + BOUNDING_RECT_TEXT_PADDING,
-                    textBackgroundPaint
-                )
-                canvas.drawText(drawableText, left, top + bounds.height(), textPaint)
-
-            }
-
-
-
+            canvas.drawText(drawableText, left, top + bounds.height(), textPaint)
 
         }
     }
 
     fun setResults(boundingBoxes: List<BoundingBox>) {
-        val updatedResults = boundingBoxes.mapIndexed { index, box ->
-            if (index < results.size) {
-                val currentBox = results[index]
-                if (Math.abs(box.cnf - currentBox.cnf) > 0.05) {
-                    box.copy(cnf = currentBox.cnf)
-                } else {
-                    currentBox
-                }
-            } else {
-                box
-            }
-        }
-
-        if (updatedResults != results) {
-            results = updatedResults
-            invalidate()
-        }
+        results = boundingBoxes
+        invalidate()
     }
 
     companion object {
