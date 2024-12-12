@@ -16,8 +16,6 @@ import kotlin.concurrent.timer
 
 class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 
-    private val handler: Handler = Handler()
-    private val timer = Timer()
     private var results = listOf<BoundingBox>()
     private var boxPaint = Paint()
     private var textBackgroundPaint = Paint()
@@ -55,6 +53,7 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
     override fun draw(canvas: Canvas) {
         super.draw(canvas)
 
+
         results.forEach {
             val left = it.x1 * width
             val top = it.y1 * height
@@ -70,17 +69,21 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
             textBackgroundPaint.getTextBounds(drawableText, 0, drawableText.length, bounds)
             val textWidth = bounds.width()
             val textHeight = bounds.height()
-            canvas.drawRect(
-                left,
-                top,
-                left + textWidth + BOUNDING_RECT_TEXT_PADDING,
-                top + textHeight + BOUNDING_RECT_TEXT_PADDING,
-                textBackgroundPaint
-            )
 
-            timer(period = interval) {
+
+            if(it.cnf >= 0.75){
+                canvas.drawRect(
+                    left,
+                    top,
+                    left + textWidth + BOUNDING_RECT_TEXT_PADDING,
+                    top + textHeight + BOUNDING_RECT_TEXT_PADDING,
+                    textBackgroundPaint
+                )
                 canvas.drawText(drawableText, left, top + bounds.height(), textPaint)
+
             }
+
+
 
 
         }
