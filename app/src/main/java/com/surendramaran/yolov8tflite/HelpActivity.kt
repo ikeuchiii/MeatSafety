@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 
-abstract class HelpActivity : AppCompatActivity(), Detector.DetectorListener {
+class HelpActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

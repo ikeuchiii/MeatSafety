@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
         val help_btn = findViewById<Button>(R.id.help_btn)
         help_btn.setOnClickListener {
             val intent = Intent(this, HelpActivity::class.java)
