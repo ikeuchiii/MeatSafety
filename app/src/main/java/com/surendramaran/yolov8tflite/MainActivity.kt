@@ -1,6 +1,7 @@
 package com.surendramaran.yolov8tflite
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Matrix
@@ -27,7 +28,6 @@ import java.util.concurrent.Executors
 class MainActivity : AppCompatActivity(), Detector.DetectorListener {
     private lateinit var binding: ActivityMainBinding
     private val isFrontCamera = false
-
     private var preview: Preview? = null
     private var imageAnalyzer: ImageAnalysis? = null
     private var camera: Camera? = null
@@ -41,11 +41,11 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        val main_tv = findViewById<TextView>(R.id.main_tv)
+        setContentView(R.layout.activity_main)
         val help_btn = findViewById<Button>(R.id.help_btn)
         help_btn.setOnClickListener {
-            main_tv.text = "クリックされました‼"
+            val intent = Intent(this, HelpActivity::class.java)
+            startActivity(intent)
         }
         cameraExecutor = Executors.newSingleThreadExecutor()
 
