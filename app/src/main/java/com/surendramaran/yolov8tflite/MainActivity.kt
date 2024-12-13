@@ -10,6 +10,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.AspectRatio
 import androidx.camera.core.Camera
@@ -18,6 +19,7 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
+import androidx.core.app.AppLaunchChecker
 import androidx.core.content.ContextCompat
 import com.surendramaran.yolov8tflite.Constants.LABELS_PATH
 import com.surendramaran.yolov8tflite.Constants.MODEL_PATH
@@ -42,24 +44,40 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        if(AppLaunchChecker.hasStartedFromLauncher(this)){
+
+
+
+        } else {
+            AlertDialog.Builder(this,R.style.DialogTheme) // FragmentではActivityを取得して生成
+                .setTitle("MeatSafety同意事項")
+                .setMessage("このアプリを使用して食中毒になった場合、J06チームは一切の責任を負いません。")
+                .setPositiveButton("同意する", { dialog, which ->
+                    // TODO:Yesが押された時の挙動
+                    AppLaunchChecker.onActivityCreate(this);
+                })
+                .setNegativeButton("同意しない", { dialog, which ->
+                    // TODO:Noが押された時の挙動
+                    finishAndRemoveTask()
+                })
+                .show()
+        }
         val help_btn = findViewById<Button>(R.id.help_btn)
         help_btn.setOnClickListener {
             val intent = Intent(this, HelpActivity::class.java)
             startActivity(intent)
         }
+
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         cameraExecutor.execute {
             detector = Detector(baseContext, MODEL_PATH, LABELS_PATH, this)
         }
-
         if (allPermissionsGranted()) {
             startCamera()
         } else {
             ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
         }
-
-
     }
 
 
@@ -189,3 +207,5 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
         }
     }
 }
+
+

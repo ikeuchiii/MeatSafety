@@ -47,5 +47,7 @@
         android:layout_width="wrap_content"									
         android:layout_height="wrap_content"									
         android:id="@+id/help_btn"									
-        android:text="ボタン"/>					
+        android:text="ボタン"/>		
+
+    			
 </androidx.constraintlayout.widget.ConstraintLayout>
