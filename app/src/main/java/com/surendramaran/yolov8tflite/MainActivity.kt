@@ -6,6 +6,8 @@ import android.graphics.Bitmap
 import android.graphics.Matrix
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.AspectRatio
@@ -40,7 +42,11 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val main_tv = findViewById<TextView>(R.id.main_tv)
+        val help_btn = findViewById<Button>(R.id.help_btn)
+        help_btn.setOnClickListener {
+            main_tv.text = "クリックされました‼"
+        }
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         cameraExecutor.execute {
