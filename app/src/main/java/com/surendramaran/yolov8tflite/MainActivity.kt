@@ -47,13 +47,13 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
 
         } else {
             AlertDialog.Builder(this) // FragmentではActivityを取得して生成
-                .setTitle("タイトル")
-                .setMessage("メッセージ")
-                .setPositiveButton("OK", { dialog, which ->
+                .setTitle("MeatSafety同意事項")
+                .setMessage("このアプリを使用して食中毒になった場合、J06チームは一切の責任を負いません。")
+                .setPositiveButton("同意する", { dialog, which ->
                     // TODO:Yesが押された時の挙動
                     AppLaunchChecker.onActivityCreate(this);
                 })
-                .setNegativeButton("No", { dialog, which ->
+                .setNegativeButton("同意しない", { dialog, which ->
                     // TODO:Noが押された時の挙動
                     finishAndRemoveTask()
                 })
