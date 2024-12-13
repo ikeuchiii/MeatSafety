@@ -51,14 +51,14 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
                 .setMessage("メッセージ")
                 .setPositiveButton("OK", { dialog, which ->
                     // TODO:Yesが押された時の挙動
+                    AppLaunchChecker.onActivityCreate(this);
                 })
                 .setNegativeButton("No", { dialog, which ->
                     // TODO:Noが押された時の挙動
+                    finishAndRemoveTask()
                 })
                 .show()
         }
-
-        AppLaunchChecker.onActivityCreate(this);
 
         val helpbutton = findViewById<Button>(R.id.helpbutton)
         helpbutton.setOnClickListener {
