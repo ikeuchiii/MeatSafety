@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">MeatSafety</string>
-    <string name="gpu">GPU</string>
+    <string name="helpbutton">Help</string>
 </resources>

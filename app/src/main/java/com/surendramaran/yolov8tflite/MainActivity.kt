@@ -7,8 +7,8 @@ import android.graphics.Matrix
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.AspectRatio
 import androidx.camera.core.Camera
@@ -17,6 +17,7 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
+import androidx.core.app.AppLaunchChecker
 import androidx.core.content.ContextCompat
 import com.surendramaran.yolov8tflite.Constants.LABELS_PATH
 import com.surendramaran.yolov8tflite.Constants.MODEL_PATH
@@ -36,17 +37,34 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
 
     private lateinit var cameraExecutor: ExecutorService
 
-    
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val main_tv = findViewById<TextView>(R.id.main_tv)
-        val help_btn = findViewById<Button>(R.id.help_btn)
-        help_btn.setOnClickListener {
-            main_tv.text = "クリックされました‼"
+        if(AppLaunchChecker.hasStartedFromLauncher(this)){
+
+        } else {
+            AlertDialog.Builder(this) // FragmentではActivityを取得して生成
+                .setTitle("タイトル")
+                .setMessage("メッセージ")
+                .setPositiveButton("OK", { dialog, which ->
+                    // TODO:Yesが押された時の挙動
+                })
+                .setNegativeButton("No", { dialog, which ->
+                    // TODO:Noが押された時の挙動
+                })
+                .show()
         }
+
+        AppLaunchChecker.onActivityCreate(this);
+
+        val helpbutton = findViewById<Button>(R.id.helpbutton)
+        helpbutton.setOnClickListener {
+
+        }
+
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         cameraExecutor.execute {
@@ -181,7 +199,7 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
 
     override fun onDetect(boundingBoxes: List<BoundingBox>, inferenceTime: Long) {
         runOnUiThread {
-           
+
             binding.overlay.apply {
                 setResults(boundingBoxes)
                 invalidate()
