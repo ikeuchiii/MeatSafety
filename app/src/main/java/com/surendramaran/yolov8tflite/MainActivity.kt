@@ -11,6 +11,10 @@ import android.graphics.Matrix
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+
+import android.widget.ImageView
+import com.bumptech.glide.Glide
+
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -81,6 +85,15 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
         } else {
             ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
         }
+
+        val gifImageView: ImageView = findViewById(R.id.imageView3)
+
+        // GlideでGIFを表示
+        Glide.with(this)
+            .asGif() // GIFとして読み込む
+            .load(R.drawable.ledsb_result) // res/drawable/sample_gif.gif
+            .into(gifImageView)
+
     }
 
 
