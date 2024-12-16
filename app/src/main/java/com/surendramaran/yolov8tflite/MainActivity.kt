@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
 
     private lateinit var cameraExecutor: ExecutorService
 
-    
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -199,7 +199,7 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
 
     override fun onDetect(boundingBoxes: List<BoundingBox>, inferenceTime: Long) {
         runOnUiThread {
-           
+
             binding.overlay.apply {
                 setResults(boundingBoxes)
                 invalidate()
@@ -207,5 +207,6 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
         }
     }
 }
+
 
 

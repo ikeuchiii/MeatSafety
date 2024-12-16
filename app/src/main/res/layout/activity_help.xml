@@ -1,22 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="サブ画面だよ"
-        android:textSize="18sp"/>
 
-    <Button
-        android:id="@+id/button_to_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="メイン画面へ遷移する"
-        android:layout_marginTop="16dp"/>
+    
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="アプリの使用説明\n
+
+Meat Safetyは色覚異常の方向けの肉の焼き加減判定アプリです。\n
+・判定できる肉の種類\n
+    牛肉　豚肉　鶏肉\n
+・肉を撮るコツ\n
+    肉がなるべく重ならないようにする。
+肉と\n     肉の間隔はある程度あけるとより正確な判\n     定が出ます。
+複数枚同時に映しても判定し\n     てくれます。\n
+・判定の種類\n
+    生肉\n
+    生焼け\n
+    調理済み\n
+    焦げた\n
+    調理済みが食べれる目安となっています。\n
+    パーセントはその判定の信頼度になってい\n    ます。
+ちょいレアは自己責任でお願いしま\n    す。"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#00ff7f"
+                android:paddingLeft="10dp"
+                android:text="OK"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="356dp"
+                app:srcCompat="@drawable/_0_91" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff4500"
+                android:paddingLeft="10dp"
+                android:text="NG"
+                android:textSize="18sp" />
+
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="356dp"
+                app:srcCompat="@drawable/_0_91" />
+
+            <Button
+                android:id="@+id/button_to_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="240dp"
+                android:text="メイン画面へ" />
+         </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>
