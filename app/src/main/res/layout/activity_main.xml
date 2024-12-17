@@ -34,12 +34,13 @@
         app:layout_constraintVertical_bias="0.5" />
 
     <Button
-        android:layout_width="wrap_content"									
+        android:id="@+id/help_btn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Help"
+        app:icon="@drawable/help_outline_24dp_5f6368"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" 									
-        android:id="@+id/help_btn"									
-        android:text="ボタン"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageView

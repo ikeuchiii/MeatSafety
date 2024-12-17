@@ -3,12 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     android:padding="16dp">
 
-
-    
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,7 +15,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,9 +42,9 @@ Meat Safetyは色覚異常の方向けの肉の焼き加減判定アプリです
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#00ff7f"
                 android:paddingLeft="10dp"
                 android:text="OK"
+                android:textColor="#00ff7f"
                 android:textSize="18sp" />
 
             <ImageView
@@ -57,9 +56,9 @@ Meat Safetyは色覚異常の方向けの肉の焼き加減判定アプリです
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#ff4500"
                 android:paddingLeft="10dp"
                 android:text="NG"
+                android:textColor="#ff4500"
                 android:textSize="18sp" />
 
 
@@ -74,8 +73,9 @@ Meat Safetyは色覚異常の方向けの肉の焼き加減判定アプリです
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="240dp"
-                android:text="メイン画面へ" />
-         </LinearLayout>
+                android:text="Back"
+                app:icon="@drawable/keyboard_return_24dp_5f6368" />
+        </LinearLayout>
     </ScrollView>
 
 
