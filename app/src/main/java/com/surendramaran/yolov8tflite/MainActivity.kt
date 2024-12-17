@@ -12,7 +12,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.widget.Button
-
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 
@@ -90,18 +90,23 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
         val gifImageView: ImageView = findViewById(R.id.imageView3)
         val handler = Handler()
 
-
-
-
-        fun playGif() {
+        fun loadGifWithControl(imageView: ImageView, gifResId: Int) {
             // GlideでGIFを表示
             Glide.with(this)
                 .asGif() // GIFとして読み込む
                 .load(R.drawable.ledsb_result) // res/drawable/sample_gif.gif
                 .into(gifImageView)
-            handler.postDelayed({ playGif() }, 10000)
+
+            Handler().postDelayed({
+                Glide.with(imageView.context).clear(imageView) // 再生停止
+                Glide.with(imageView.context)
+                    .asGif() // GIFとして読み込む
+                    .load(R.drawable.ledsb_result) // res/drawable/sample_gif.gif
+                    .into(gifImageView)
+            }, 3000)
+
         }
-        playGif()
+
 
     }
 
