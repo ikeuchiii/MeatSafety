@@ -90,6 +90,9 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
         val gifImageView: ImageView = findViewById(R.id.imageView3)
         val handler = Handler()
 
+
+
+
         fun playGif() {
             // GlideでGIFを表示
             Glide.with(this)
