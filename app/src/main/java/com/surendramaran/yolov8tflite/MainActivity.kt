@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageButton
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide
@@ -70,7 +71,7 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
                 })
                 .show()
         }
-        val help_btn = findViewById<Button>(R.id.help_btn)
+        val help_btn = findViewById<ImageButton>(R.id.help_btn)
         help_btn.setOnClickListener {
             val intent = Intent(this, HelpActivity::class.java)
             startActivity(intent)

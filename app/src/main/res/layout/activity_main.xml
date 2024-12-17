@@ -33,14 +33,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5" />
 
-    <Button
+    
+
+     <ImageButton
         android:id="@+id/help_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Help"
-        app:icon="@drawable/help_outline_24dp_5f6368"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/group_1__1_"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+         android:contentDescription="@string/image_button_help"
+        android:layout_margin="16dp"
+        android:background="@null"/>
 
 
     <ImageView
@@ -53,7 +58,7 @@
         android:layout_marginBottom="16dp"    
         app:srcCompat="@drawable/ledsb_result" />
 
-       
+   
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
