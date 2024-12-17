@@ -10,6 +10,7 @@ import android.graphics.Bitmap
 import android.graphics.Matrix
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Button
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -88,25 +89,8 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
         }
 
         val gifImageView: ImageView = findViewById(R.id.imageView3)
-        val handler = Handler()
 
-        fun loadGifWithControl(imageView: ImageView, gifResId: Int) {
-            // GlideでGIFを表示
-            Glide.with(this)
-                .asGif() // GIFとして読み込む
-                .load(R.drawable.ledsb_result) // res/drawable/sample_gif.gif
-                .into(gifImageView)
-
-            Handler().postDelayed({
-                Glide.with(imageView.context).clear(imageView) // 再生停止
-                Glide.with(imageView.context)
-                    .asGif() // GIFとして読み込む
-                    .load(R.drawable.ledsb_result) // res/drawable/sample_gif.gif
-                    .into(gifImageView)
-            }, 3000)
-
-        }
-
+        playGifEveryFiveSeconds(gifImageView, R.drawable.ledsb_result)
 
     }
 
@@ -235,6 +219,31 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
                 invalidate()
             }
         }
+    }
+
+    private fun playGifEveryFiveSeconds(imageView: ImageView, gifResId: Int) {
+        val handler = Handler(Looper.getMainLooper())
+        val gifImageView: ImageView = findViewById(R.id.imageView3)
+        val gifRunnable = object : Runnable {
+            override fun run() {
+                // GlideでGIFを表示
+                Glide.with(imageView.context)
+                    .asGif() // GIFとして読み込む
+                    .load(R.drawable.ledsb_result) // res/drawable/sample_gif.gif
+                    .into(gifImageView)
+
+                // 3秒後にGIFを停止
+                handler.postDelayed({
+                    Glide.with(imageView.context).clear(imageView) // GIFを停止
+                }, 10000) // 再生時間（3秒）
+
+                // 再び5秒後にGIFを再生
+                handler.postDelayed(this, 30000) // 次の再生タイミング
+            }
+        }
+
+        // GIF再生開始
+        handler.post(gifRunnable)
     }
 }
 
