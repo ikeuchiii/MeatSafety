@@ -9,6 +9,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Matrix
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.Button
 
@@ -87,12 +88,17 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
         }
 
         val gifImageView: ImageView = findViewById(R.id.imageView3)
+        val handler = Handler()
 
-        // GlideでGIFを表示
-        Glide.with(this)
-            .asGif() // GIFとして読み込む
-            .load(R.drawable.ledsb_result) // res/drawable/sample_gif.gif
-            .into(gifImageView)
+        fun playGif() {
+            // GlideでGIFを表示
+            Glide.with(this)
+                .asGif() // GIFとして読み込む
+                .load(R.drawable.ledsb_result) // res/drawable/sample_gif.gif
+                .into(gifImageView)
+            handler.postDelayed({ playGif() }, 10000)
+        }
+        playGif()
 
     }
 
