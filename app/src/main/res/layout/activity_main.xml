@@ -40,7 +40,7 @@
         android:layout_width="68dp"
         android:layout_height="68dp"
         android:scaleType="centerInside"
-        app:srcCompat="@drawable/group_1__1_"
+        app:srcCompat="@drawable/icons8_help_48"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
          android:contentDescription="@string/image_button_help"
