@@ -21,7 +21,7 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
     private var textBackgroundPaint = Paint()
     private var textPaint = Paint()
     private var lastUpdateTime: Long = 0
-    private val updateInterval: Long = 1000 // 更新間隔 (ミリ秒)
+    private val updateInterval: Long = 900 // 更新間隔 (ミリ秒)
 
     private var bounds = Rect()
 
