@@ -20,6 +20,8 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
     private var boxPaint = Paint()
     private var textBackgroundPaint = Paint()
     private var textPaint = Paint()
+    private var lastUpdateTime: Long = 0
+    private val updateInterval: Long = 1000 // 更新間隔 (ミリ秒)
 
     private var bounds = Rect()
 
@@ -83,10 +85,17 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
     }
 
     fun setResults(boundingBoxes: List<BoundingBox>) {
+        val currentTime = System.currentTimeMillis()
+        if (currentTime - lastUpdateTime < updateInterval) {
+            return // 前回の更新から十分な時間が経過していない場合はスキップ
+        }
+        lastUpdateTime = currentTime
+
+        // 更新ロジック（現在のコードをここに記述）
         val updatedResults = boundingBoxes.mapIndexed { index, box ->
             if (index < results.size) {
                 val currentBox = results[index]
-                if (Math.abs(box.cnf - currentBox.cnf) > 0.15) {
+                if (Math.abs(box.cnf - currentBox.cnf) > 0) {
                     box.copy(cnf = currentBox.cnf)
                 } else {
                     currentBox
