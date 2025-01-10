@@ -51,7 +51,7 @@ Meat Safetyは色覚異常の方向けの肉の焼き加減判定アプリです
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="356dp"
-                app:srcCompat="@drawable/_0_91" />
+                app:srcCompat="@drawable/_ok_niku" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -66,7 +66,7 @@ Meat Safetyは色覚異常の方向けの肉の焼き加減判定アプリです
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
                 android:layout_height="356dp"
-                app:srcCompat="@drawable/_0_91" />
+                app:srcCompat="@drawable/_ng_kasanari" />
 
            <ImageButton
                 android:id="@+id/button_to_main"
