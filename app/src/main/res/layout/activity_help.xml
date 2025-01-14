@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/black"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,6 +21,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
                 android:text="アプリの使用説明\n
 
 Meat Safetyは色覚異常の方向けの肉の焼き加減判定アプリです。\n
@@ -37,7 +39,8 @@ Meat Safetyは色覚異常の方向けの肉の焼き加減判定アプリです
     調理済みが食べれる目安となっています。\n
     パーセントはその判定の信頼度になってい\n    ます。
 ちょいレアは自己責任でお願いしま\n    す。"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textColor="#FFFFFF"  />
 
             <TextView
                 android:layout_width="wrap_content"
