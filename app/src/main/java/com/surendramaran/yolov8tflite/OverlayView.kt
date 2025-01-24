@@ -25,6 +25,7 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
 
     private var bounds = Rect()
 
+
     init {
         initPaints()
     }
